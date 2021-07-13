@@ -7,11 +7,12 @@ import (
 	"gin-vue-admin/model/response"
 	"gin-vue-admin/service"
 	"gin-vue-admin/utils"
+	"net/url"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
-	"net/url"
-	"os"
 )
 
 // @Tags AutoCode
@@ -66,7 +67,7 @@ func CreateTemp(c *gin.Context) {
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /autoCode/getTables [get]
 func GetTables(c *gin.Context) {
-	dbName := c.DefaultQuery("dbName", global.GVA_CONFIG.Mysql.Dbname)
+	dbName := c.DefaultQuery("dbName", global.GVA_CONFIG.Mysql[0].Dbname)
 	err, tables := service.GetTables(dbName)
 	if err != nil {
 		global.GVA_LOG.Error("查询table失败!", zap.Any("err", err))
@@ -100,7 +101,7 @@ func GetDB(c *gin.Context) {
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /autoCode/getColumn [get]
 func GetColumn(c *gin.Context) {
-	dbName := c.DefaultQuery("dbName", global.GVA_CONFIG.Mysql.Dbname)
+	dbName := c.DefaultQuery("dbName", global.GVA_CONFIG.Mysql[0].Dbname)
 	tableName := c.Query("tableName")
 	if err, columns := service.GetColumn(tableName, dbName); err != nil {
 		global.GVA_LOG.Error("获取失败!", zap.Any("err", err))

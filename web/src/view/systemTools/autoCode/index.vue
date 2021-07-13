@@ -48,6 +48,9 @@
       <el-form-item label="Struct名称" prop="structName">
         <el-input v-model="form.structName" placeholder="首字母自动转换大写"></el-input>
       </el-form-item>
+      <el-form-item label="dbName" prop="dbName">
+        <el-input v-model="form.dbName" placeholder="指定数据库名（非必填）"></el-input>
+      </el-form-item>
       <el-form-item label="tableName" prop="tableName">
         <el-input v-model="form.tableName" placeholder="指定表名（非必填）"></el-input>
       </el-form-item>

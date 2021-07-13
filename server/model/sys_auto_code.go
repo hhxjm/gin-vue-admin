@@ -5,6 +5,7 @@ import "errors"
 // 初始版本自动化代码工具
 type AutoCodeStruct struct {
 	StructName         string  `json:"structName"`
+	DbName             string  `json:"dbName"`
 	TableName          string  `json:"tableName"`
 	PackageName        string  `json:"packageName"`
 	Abbreviation       string  `json:"abbreviation"`

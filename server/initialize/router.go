@@ -5,10 +5,11 @@ import (
 	"gin-vue-admin/global"
 	"gin-vue-admin/middleware"
 	"gin-vue-admin/router"
-	"github.com/gin-gonic/gin"
-	"github.com/swaggo/gin-swagger"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 // 初始化总路由
@@ -47,6 +48,7 @@ func Routers() *gin.Engine {
 		router.InitSysDictionaryDetailRouter(PrivateGroup)   // 字典详情管理
 		router.InitFileUploadAndDownloadRouter(PrivateGroup) // 文件上传下载功能路由
 		router.InitWorkflowProcessRouter(PrivateGroup)       // 工作流相关接口
+		router.InitPlayerRouter(PrivateGroup)                // 玩家信息
 	}
 	global.GVA_LOG.Info("router register success")
 	return Router
